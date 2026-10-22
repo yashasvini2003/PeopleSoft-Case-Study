@@ -1,6 +1,3 @@
-# PeopleSoft-Case-Study
-
-
 # Oracle PeopleSoft HCM Absence Management
 
 **A Business Analyst Case Study: Vacation Requests, Delegated Approval, and Paid/Unpaid Absence**
@@ -32,10 +29,7 @@ The analysis follows the request through PeopleSoft and asks what a business ana
 - [Entitlement and monthly calculations](#entitlement-and-monthly-calculations)
 - [Configuration choices, quality, and access](#configuration-choices-quality-and-access)
 - [SQL reporting exercise](#sql-reporting-exercise)
-- [Proposed user acceptance testing](#proposed-user-acceptance-testing)
 - [Business analysis techniques and academic connections](#business-analysis-techniques-and-academic-connections)
-- [Coverage of the thirteen learning topics](#coverage-of-the-thirteen-learning-topics)
-- [Presenting the backlog in GitHub](#presenting-the-backlog-in-github)
 - [What I learned and what I would explore next](#what-i-learned-and-what-i-would-explore-next)
 - [References](#references)
 
@@ -59,9 +53,9 @@ The scope is PeopleSoft HCM Absence Management and its connections to approval, 
 
 | Person or role | What matters to them | Responsibility in this case |
 | --- | --- | --- |
-| Asha â employee | Time for the wedding and clear pay expectations | Enter accurate details, review the forecast, submit, and respond to clarification |
-| Daniel â manager | Team coverage and consistent decisions | Review when available; establish an appropriate delegation while away |
-| Elena â delegate | Clear authority and the information needed to decide | Accept the delegation and act only within its valid scope and period |
+| Asha — employee | Time for the wedding and clear pay expectations | Enter accurate details, review the forecast, submit, and respond to clarification |
+| Daniel — manager | Team coverage and consistent decisions | Review when available; establish an appropriate delegation while away |
+| Elena — delegate | Clear authority and the information needed to decide | Accept the delegation and act only within its valid scope and period |
 | HR policy owner | Consistent entitlement and absence treatment | Confirm eligibility, accrual, unpaid treatment, and cancellation rules |
 | Approval administrator | Requests with a valid, accountable approval route | Investigate exceptions and perform authorized route repair |
 | Payroll specialist | Accurate hours and explainable gross pay | Process eligible events and reconcile paid/unpaid units with worked time |
@@ -101,9 +95,9 @@ The following choices make the example calculable. They are Northbridge's fictio
 | Employee | Asha Shah, E1001, Operations Coordinator |
 | Absence name used for the request | Vacation |
 | Reason | Family event: attending her sister's wedding and travelling |
-| Absence dates | 16â18 November 2026 |
+| Absence dates | 16–18 November 2026 |
 | Submission and example review | Submitted 10 November; reviewed 12 November |
-| Work schedule | MondayâFriday, 8 hours per working day |
+| Work schedule | Monday–Friday, 8 hours per working day |
 | Demonstration calendar | No holiday exclusions; weekends have zero scheduled hours |
 | Opening balance before November's credit | 8 hours |
 | Monthly credit | 8 hours, usable on the first day of the month for an eligible employee |
@@ -112,12 +106,12 @@ The following choices make the example calculable. They are Northbridge's fictio
 | Shortfall treatment | Approved excess may be unpaid with the employee's agreement |
 | Borrowing or negative balance | Neither is allowed in this example |
 | Approval | One authorized approval step; manager or valid accepted delegate |
-| Daniel's delegation to Elena | Absence approvals, 9â20 November; accepted before submission |
+| Daniel's delegation to Elena | Absence approvals, 9–20 November; accepted before submission |
 | Illustrative hourly rate | CAD 30; gross-pay demonstration only |
 
 Selecting Vacation is a scenario choice. A family wedding is the reason for this request; the case does not assume that a separate special family-leave entitlement exists.
 
-The monthly-credit policy would produce 12 Ã 8 = **96 hours**, or **12 eight-hour days**, over twelve eligible months. That is a mathematical description of the assumed policy. Eligibility, carryover, joiner proration, waiting periods, schedule changes, and holiday treatment would need separate decisions in a real project.
+The monthly-credit policy would produce 12 × 8 = **96 hours**, or **12 eight-hour days**, over twelve eligible months. That is a mathematical description of the assumed policy. Eligibility, carryover, joiner proration, waiting periods, schedule changes, and holiday treatment would need separate decisions in a real project.
 
 ### Terms I use in the case
 
@@ -132,13 +126,13 @@ The monthly-credit policy would produce 12 Ã 8 = **96 hours**, or **12 eight-
 | Absence processing | Calculation of eligible absence and entitlement results under the configured rules |
 | Delegate / proxy | A person with accepted delegated authority for the relevant transaction and period |
 
-Oracle distinguishes these concepts in its Absence Management documentation. The relationships informed this model; the selected numbers and company policies are my scenario assumptions. See references O06âO12.
+Oracle distinguishes these concepts in its Absence Management documentation. The relationships informed this model; the selected numbers and company policies are my scenario assumptions. See references O06–O12.
 
 ## Following Asha's request
 
 ### 1. Preparing and submitting the request
 
-On 10 November, Asha signs in through Northbridge's browser-based employee access. She opens the configured absence function, selects Vacation, enters 16â18 November, and provides the required reason. The example navigation is Employee Self Service â Time â Manage Absences; the actual tiles and route depend on the organization's setup. [O03, O04, O07]
+On 10 November, Asha signs in through Northbridge's browser-based employee access. She opens the configured absence function, selects Vacation, enters 16–18 November, and provides the required reason. The example navigation is Employee Self Service → Time → Manage Absences; the actual tiles and route depend on the organization's setup. [O03, O04, O07]
 
 The proposed process checks her eligibility, required information, date order, and schedule. Three working days become twenty-four hours. If a required field is missing or a date is invalid, Asha receives a message explaining what to correct before submission.
 
@@ -164,7 +158,7 @@ Elena considers the requested dates, team coverage, and permitted request inform
 | **Deny** | The process ends with an explanation | Review the reason and discuss other dates if needed | This request contributes no approved absence allocation; denial itself does not deduct pay |
 | **Push Back** | At the supported first approval step, it returns for attention with a comment | Clarify or correct the request and resubmit through validation and forecasting | No approved absence allocation yet; the eventual pay outcome remains unresolved |
 
-An example approval comment is: âCoverage is available for these dates. Approved with the acknowledged expected allocation of sixteen paid hours and eight unpaid hours.â An example denial reason is that the requested dates cannot be supported because essential team coverage is unavailable. An example Push Back comment asks Asha to clarify a mismatch between the selected full days and her request notes.
+An example approval comment is: “Coverage is available for these dates. Approved with the acknowledged expected allocation of sixteen paid hours and eight unpaid hours.” An example denial reason is that the requested dates cannot be supported because essential team coverage is unavailable. An example Push Back comment asks Asha to clarify a mismatch between the selected full days and her request notes.
 
 Push Back is not interchangeable with denial. In this case, it means the first reviewer needs a correctable detail clarified. At a later approval stage, a supported pushback can return to a previous approver instead. The available actions and exact labels must be checked for the transaction and deployed configuration. **Submitted, Approved, Denied, Needs Rework, and Cancelled are conceptual labels in this study**, not asserted PeopleSoft database codes. [O08, O08A]
 
@@ -195,36 +189,36 @@ These describe the outcomes Northbridge needs. The priorities are provisional fo
 
 ## User stories and acceptance criteria
 
-The stories below turn those requirements into behavior that stakeholders could review. **FR01âFR18** identify the functional behavior represented by the matching story; **U01âU26** refer to the acceptance scenarios later in this README. These are proposed requirements, not features implemented in PeopleSoft.
+The stories below turn those requirements into behavior that stakeholders could review. **FR01–FR18** identify the functional behavior represented by the matching story; **U01–U26** refer to the acceptance scenarios later in this README. These are proposed requirements, not features implemented in PeopleSoft.
 
-### US01 â Request time for a family event
+### US01 — Request time for a family event
 
 **As an employee, I want to request vacation for my sister's wedding so that I can arrange the time away and receive a clear decision.**
 
-- Given Asha's eight-hour weekday schedule, when she selects 16â18 November, then the requested duration is twenty-four working hours.
+- Given Asha's eight-hour weekday schedule, when she selects 16–18 November, then the requested duration is twenty-four working hours.
 - Before proceeding, she can understand whether all requested hours are expected to be paid.
 
-**Trace:** FR01 Â· BR01âBR02 Â· U01 Â· Must
+**Trace:** FR01 · BR01–BR02 · U01 · Must
 
-### US02 â Access my absence information securely
+### US02 — Access my absence information securely
 
 **As an employee, I want to open my own absence tasks so that I can manage my requests securely.**
 
 - An authenticated, authorized employee can reach the configured absence function.
 - Asha cannot view another employee's record by changing a request identifier or using a direct link.
 
-**Trace:** FR02 Â· BR05, BR12 Â· U02 Â· Must
+**Trace:** FR02 · BR05, BR12 · U02 · Must
 
-### US03 â Enter a valid request
+### US03 — Enter a valid request
 
 **As an employee, I want to enter the absence name, dates, and required details so that the request accurately describes the time I need.**
 
 - Missing required information, ineligibility, or an end date before the start date prevents valid submission and explains the correction.
 - Duration follows the schedule and configured units, including non-working days and any supported partial days.
 
-**Trace:** FR03 Â· BR01âBR02 Â· U01, U03âU04, U21 Â· Must
+**Trace:** FR03 · BR01–BR02 · U01, U03–U04, U21 · Must
 
-### US04 â Understand the expected paid and unpaid hours
+### US04 — Understand the expected paid and unpaid hours
 
 **As an employee, I want to review the expected pay treatment before submitting so that I can make an informed decision.**
 
@@ -232,9 +226,9 @@ The stories below turn those requirements into behavior that stakeholders could 
 - If she declines the proposed unpaid treatment, she can revise or withdraw the candidate rather than submit on that basis.
 - If the split changes before approval, the proposed control requires renewed acknowledgement. Delivered fit remains to be assessed.
 
-**Trace:** FR04 Â· BR03âBR04 Â· U05âU06, U20 Â· Must
+**Trace:** FR04 · BR03–BR04 · U05–U06, U20 · Must
 
-### US05 â Submit and identify my request
+### US05 — Submit and identify my request
 
 **As an employee, I want to submit a validated request and keep its identifier so that I can follow its progress.**
 
@@ -242,9 +236,9 @@ The stories below turn those requirements into behavior that stakeholders could 
 - Repeated clicks do not create duplicate business submissions.
 - An unresolved route remains visible as an exception and is not presented as approval.
 
-**Trace:** FR05 Â· BR05âBR06 Â· U07, U10 Â· Must
+**Trace:** FR05 · BR05–BR06 · U07, U10 · Must
 
-### US06 â Delegate approval while I am away
+### US06 — Delegate approval while I am away
 
 **As a manager, I want to delegate eligible absence approvals for a defined period so that employees can receive decisions while I am unavailable.**
 
@@ -252,9 +246,9 @@ The stories below turn those requirements into behavior that stakeholders could 
 - Rejected, revoked, expired, or unrelated delegation cannot authorize a decision.
 - Authority is checked when the decision is made, including when delegation expires after routing.
 
-**Trace:** FR06 Â· BR05 Â· U08âU09, U22 Â· Must
+**Trace:** FR06 · BR05 · U08–U09, U22 · Must
 
-### US07 â Resolve an approval-routing exception
+### US07 — Resolve an approval-routing exception
 
 **As an approval administrator, I want to identify and repair an unresolved route so that each request has an accountable reviewer.**
 
@@ -262,9 +256,9 @@ The stories below turn those requirements into behavior that stakeholders could 
 - Reassignment uses an authorized administrator and valid recipient, with actor, time, and reason recorded.
 - Administrative access alone does not grant approval or payroll authority.
 
-**Trace:** FR07 Â· BR05âBR06 Â· U09âU10, U22 Â· Must
+**Trace:** FR07 · BR05–BR06 · U09–U10, U22 · Must
 
-### US08 â Approve a suitable request
+### US08 — Approve a suitable request
 
 **As an authorized manager or delegate, I want to approve a suitable request so that the employee has permission to take the specified absence.**
 
@@ -272,9 +266,9 @@ The stories below turn those requirements into behavior that stakeholders could 
 - Approval checks current authority and the agreed policy/acknowledgement conditions; the decision is recorded and communicated.
 - Approved remains distinguishable from absence-processed or payroll-finalized.
 
-**Trace:** FR08 Â· BR04âBR05, BR07âBR09 Â· U11, U20, U23 Â· Must
+**Trace:** FR08 · BR04–BR05, BR07–BR09 · U11, U20, U23 · Must
 
-### US09 â Deny with an explanation
+### US09 — Deny with an explanation
 
 **As an authorized reviewer, I want to deny a request with a reason so that the employee understands why it cannot proceed.**
 
@@ -282,9 +276,9 @@ The stories below turn those requirements into behavior that stakeholders could 
 - The denied request creates no approved paid or unpaid absence allocation.
 - If the employee works the scheduled hours, pay follows worked-time rules; denial is not itself a pay deduction.
 
-**Trace:** FR09 Â· BR07âBR08 Â· U12 Â· Must
+**Trace:** FR09 · BR07–BR08 · U12 · Must
 
-### US10 â Return a request for clarification
+### US10 — Return a request for clarification
 
 **As the authorized first reviewer, I want to push back a correctable request so that the employee can clarify it before a final decision.**
 
@@ -293,18 +287,18 @@ The stories below turn those requirements into behavior that stakeholders could 
 - Correction and resubmission repeat validation, forecasting, and route checks and preserve decision history.
 - A later-stage pushback follows its configured route rather than always returning to the employee.
 
-**Trace:** FR10 Â· BR07âBR08 Â· U13âU14, U26 Â· Must
+**Trace:** FR10 · BR07–BR08 · U13–U14, U26 · Must
 
-### US11 â Track the outcome and next action
+### US11 — Track the outcome and next action
 
 **As an employee, I want to see my request status and decision comments so that I know whether to wait, revise, or act on a decision.**
 
 - Submitted, Approved, Denied, and Needs Rework are distinguishable in the proposed view.
 - Messages identify the next action and any outstanding route issue without exposing another person's protected information.
 
-**Trace:** FR11 Â· BR06âBR07 Â· U11âU14 Â· Must
+**Trace:** FR11 · BR06–BR07 · U11–U14 · Must
 
-### US12 â Cancel when my plans change
+### US12 — Cancel when my plans change
 
 **As an employee, I want to request cancellation when permitted so that my absence record reflects my updated plans.**
 
@@ -312,18 +306,18 @@ The stories below turn those requirements into behavior that stakeholders could 
 - A valid pre-processing cancellation prevents future allocation from that event.
 - A processed or finalized event uses a controlled correction procedure and any required recalculation.
 
-**Trace:** FR12 Â· BR08, BR11 Â· U15âU16 Â· Must
+**Trace:** FR12 · BR08, BR11 · U15–U16 · Must
 
-### US13 â Apply entitlement on the correct date
+### US13 — Apply entitlement on the correct date
 
 **As the HR policy owner, I want monthly credits to become usable on their agreed dates so that leave availability follows the policy.**
 
 - The demonstration credit is eight hours on the first day of each eligible month and is not duplicated.
 - A credit effective in December cannot pay an absence in November under this no-borrowing policy.
 
-**Trace:** FR13 Â· BR02âBR03 Â· U17, U24 Â· Must
+**Trace:** FR13 · BR02–BR03 · U17, U24 · Must
 
-### US14 â Process approved absence hours accurately
+### US14 — Process approved absence hours accurately
 
 **As a payroll specialist, I want eligible approved hours allocated under the agreed rules so that paid time, unpaid time, and balances reconcile.**
 
@@ -331,9 +325,9 @@ The stories below turn those requirements into behavior that stakeholders could 
 - Paid plus unpaid equals requested hours; the closing entitlement is zero, with no negative balance.
 - Restarting processing does not consume entitlement or create paid units twice.
 
-**Trace:** FR14 Â· BR03, BR08âBR09 Â· U18, U23âU24 Â· Must
+**Trace:** FR14 · BR03, BR08–BR09 · U18, U23–U24 · Must
 
-### US15 â Explain the monthly gross amount
+### US15 — Explain the monthly gross amount
 
 **As a payroll specialist, I want to reconcile worked and absence hours so that the illustrative monthly gross amount is explainable.**
 
@@ -341,9 +335,9 @@ The stories below turn those requirements into behavior that stakeholders could 
 - At CAD 30 per hour, gross pay is CAD 4,800; the eight unpaid hours are not deducted a second time.
 - Worked-time inputs are verified separately rather than inferred from a request's approval status.
 
-**Trace:** FR15 Â· BR09âBR10 Â· U19 Â· Must
+**Trace:** FR15 · BR09–BR10 · U19 · Must
 
-### US16 â Report outstanding work and calculated outcomes
+### US16 — Report outstanding work and calculated outcomes
 
 **As an authorized reporting analyst, I want separate request-status and allocation reports so that I can distinguish outstanding decisions from processed absence results.**
 
@@ -351,9 +345,9 @@ The stories below turn those requirements into behavior that stakeholders could 
 - Denied and rework requests remain visible in status reporting but outside approved allocations.
 - Production reports require confirmed PeopleSoft records, approved Query access, and the applicable data restrictions.
 
-**Trace:** FR16 Â· BR12 Â· U25 Â· Should
+**Trace:** FR16 · BR12 · U25 · Should
 
-### US17 â Check the fit between requirements and configuration
+### US17 — Check the fit between requirements and configuration
 
 **As a functional specialist, I want to assess the agreed requirements against PeopleSoft capability so that configuration choices and gaps are visible before delivery.**
 
@@ -361,9 +355,9 @@ The stories below turn those requirements into behavior that stakeholders could 
 - Employee acknowledgement, forecast refresh, and concurrency controls receive an explicit fit-gap decision.
 - A configuration is not described as implemented without environment evidence.
 
-**Trace:** FR17 Â· BR01âBR12 Â· Relevant U01âU26 Â· Must
+**Trace:** FR17 · BR01–BR12 · Relevant U01–U26 · Must
 
-### US18 â Protect employee and payroll data
+### US18 — Protect employee and payroll data
 
 **As the security owner, I want function and record access limited to authorized people so that absence and pay information stay within the agreed scope.**
 
@@ -371,11 +365,9 @@ The stories below turn those requirements into behavior that stakeholders could 
 - Approval administration does not automatically grant access to individual gross pay.
 - Access tests include direct links, altered identifiers, and exports, not only visible or hidden tiles.
 
-**Trace:** FR18 Â· BR05, BR12 Â· U02, U25 Â· Must
+**Trace:** FR18 · BR05, BR12 · U02, U25 · Must
 
 ## Swimlane diagram
-
-![PeopleSoft HCM absence management swimlane diagram](swimlane-diagram.png)
 
 The five lanes show responsibilities across the employee, PeopleSoft application, manager or authorized delegate, HR/approval administrator, and payroll/reporting. Rectangles show activities and diamonds show decisions. Read the main flow from top to bottom; arrows crossing a lane boundary show a handoff.
 
@@ -393,11 +385,11 @@ For an approved request under the selected rules:
 
 | Calculation | Result |
 | --- | ---: |
-| Requested hours: 3 working days Ã 8 | 24 hours |
+| Requested hours: 3 working days × 8 | 24 hours |
 | Available entitlement: 8 opening + 8 November credit | 16 hours |
 | Paid absence: minimum of requested and available hours | 16 hours |
-| Unpaid absence: 24 â 16 | 8 hours |
-| Closing entitlement: 16 â 16 | 0 hours |
+| Unpaid absence: 24 − 16 | 8 hours |
+| Closing entitlement: 16 − 16 | 0 hours |
 
 The request is allocated in date order. The no-borrowing rule prevents a later monthly credit from being used early.
 
@@ -406,24 +398,24 @@ The request is allocated in date order. The no-borrowing rule prevents a later m
 | Monday, 16 November | 16 h | 8 h | 8 h | 0 h | 8 h |
 | Tuesday, 17 November | 8 h | 8 h | 8 h | 0 h | 0 h |
 | Wednesday, 18 November | 0 h | 8 h | 0 h | 8 h | 0 h |
-| **Total** | â | **24 h** | **16 h** | **8 h** | **0 h** |
+| **Total** | — | **24 h** | **16 h** | **8 h** | **0 h** |
 
 Oracle describes configurable handling of insufficient entitlement. Unpaid excess is the option selected for this scenario; other organizations can choose different treatment. [O11]
 
 ### Illustrative November gross pay
 
-November 2026 contains twenty-one weekdays in the demonstration calendar: 21 Ã 8 = **168 scheduled hours**. Assume Asha takes the three approved days and works all other scheduled hours.
+November 2026 contains twenty-one weekdays in the demonstration calendar: 21 × 8 = **168 scheduled hours**. Assume Asha takes the three approved days and works all other scheduled hours.
 
 | Component | Hours | Calculation | Amount |
 | --- | ---: | --- | ---: |
-| Worked time | 144 | 18 days Ã 8 h Ã CAD 30 | CAD 4,320 |
-| Paid vacation | 16 | 16 h Ã CAD 30 | CAD 480 |
+| Worked time | 144 | 18 days × 8 h × CAD 30 | CAD 4,320 |
+| Paid vacation | 16 | 16 h × CAD 30 | CAD 480 |
 | Unpaid absence | 8 | Zero payable amount | CAD 0 |
-| **Gross total** | **160 payable** | **(144 + 16) Ã CAD 30** | **CAD 4,800** |
+| **Gross total** | **160 payable** | **(144 + 16) × CAD 30** | **CAD 4,800** |
 
 If all 168 scheduled hours were payable, the reference gross would be CAD 5,040. The difference is **CAD 240**, equal to eight unpaid hours at CAD 30.
 
-The two equivalent calculations are `(worked hours + paid absence hours) Ã hourly rate` and, under these specific assumptions, `scheduled gross â unpaid hours Ã hourly rate`. Subtracting unpaid time from the first calculation again would double-count the reduction.
+The two equivalent calculations are `(worked hours + paid absence hours) × hourly rate` and, under these specific assumptions, `scheduled gross − unpaid hours × hourly rate`. Subtracting unpaid time from the first calculation again would double-count the reduction.
 
 This is an hourly gross-pay illustration. It excludes taxes, benefits, overtime, salary proration, and holiday adjustments; it is not a calculation of take-home pay or a PeopleSoft payroll formula.
 
@@ -444,7 +436,7 @@ If an eligible employee began November with sixteen hours and received the eight
 
 ### A request crossing two months
 
-Consider another employee, Sam Chen, requesting 30 Novemberâ2 December. Sam has no entitlement remaining before 30 November and receives an eight-hour credit effective 1 December.
+Consider another employee, Sam Chen, requesting 30 November–2 December. Sam has no entitlement remaining before 30 November and receives an eight-hour credit effective 1 December.
 
 | Date | New usable credit | Paid | Unpaid | Closing balance |
 | --- | ---: | ---: | ---: | ---: |
@@ -462,7 +454,7 @@ November receives **zero paid/eight unpaid hours** from this request; December r
 | Requirement area | Documentation connection | What still needs confirmation |
 | --- | --- | --- |
 | Request details and units | Self-service rules for the take [O09] | Required reasons, date restrictions, partial-day support, and employee schedule |
-| Entitlement and unpaid excess | Entitlement/take concepts and take features [O06âO06C, O11] | Eligibility, credit timing, non-negative balance, and exact unpaid handling |
+| Entitlement and unpaid excess | Entitlement/take concepts and take features [O06–O06C, O11] | Eligibility, credit timing, non-negative balance, and exact unpaid handling |
 | Forecasting | Forecasting and balance inquiry [O10] | Calendars, event-status filters, and competing requests |
 | Approval and Push Back | Approval Framework and Fluid approvals [O08, O08A] | Route, stage-specific actions, labels, notifications, and exception ownership |
 | Delegation | Self-service delegation [O13] | Covered transaction, acceptance, eligible delegate, and decision-time authority |
@@ -472,11 +464,11 @@ November receives **zero paid/eight unpaid hours** from this request; December r
 
 ### Proposed quality requirements
 
-- **NFR01 â Data protection:** restrict functions and records to the approved role and employee scope, including export paths.
-- **NFR02 â Accessibility:** core request and review tasks should support keyboard use and applicable assistive technology; validate in the target environment.
-- **NFR03 â Auditability:** preserve actor, timestamp, reason, state changes, and request version for decisions and route repair.
-- **NFR04 â Repeatability:** duplicate submissions, repeated decisions, or restarted processing must not duplicate business effects.
-- **NFR05 â Clear messages:** explain the issue and next action in language the employee can understand.
+- **NFR01 — Data protection:** restrict functions and records to the approved role and employee scope, including export paths.
+- **NFR02 — Accessibility:** core request and review tasks should support keyboard use and applicable assistive technology; validate in the target environment.
+- **NFR03 — Auditability:** preserve actor, timestamp, reason, state changes, and request version for decisions and route repair.
+- **NFR04 — Repeatability:** duplicate submissions, repeated decisions, or restarted processing must not duplicate business effects.
+- **NFR05 — Clear messages:** explain the issue and next action in language the employee can understand.
 
 | Role | Request visibility | Decision/processing authority | Individual gross-pay access |
 | --- | --- | --- | --- |
@@ -505,7 +497,7 @@ The allocation rows are sample processed results entered for checking reports. T
 | `worked_time_month` | Explicit worked-time input for the gross-pay example |
 | `delegations` | Synthetic transaction scope, dates, and acceptance status |
 
-#### SQL setup â Create and populate the sample database
+#### SQL setup — Create and populate the sample database
 
 The following setup and reports can be read or run together in an empty SQLite database. No software installation or PeopleSoft environment is needed to understand the examples.
 
@@ -605,7 +597,7 @@ INSERT INTO delegations VALUES
   ('DG03', 'M2001', 'D2008', 'ABSENCE_APPROVAL', '2026-11-09', '2026-11-20', 'REJECTED');
 ```
 
-### Report 1 â Approved paid/unpaid allocations
+### Report 1 — Approved paid/unpaid allocations
 
 **Business question:** Which approved requests have calculated paid and unpaid units? A left join keeps an approved request without results visible as awaiting processing; its missing values are not mistaken for a completed zero-hour calculation.
 
@@ -632,7 +624,7 @@ ORDER BY r.request_id;
 
 Submitted, Denied, Needs Rework, and Cancelled requests do not enter this report. Having allocation rows alone does not prove a real payroll run has finalized.
 
-### Report 2 â November hours and illustrative gross pay
+### Report 2 — November hours and illustrative gross pay
 
 **Business question:** How do scheduled hours, verified worked hours, and approved paid absence explain the gross amount? This sample report assumes the illustrated approved events have complete allocation results.
 
@@ -671,13 +663,13 @@ ORDER BY e.employee_id;
 
 | Employee/test branch | Worked | Paid absence | Unpaid absence | Accounted/scheduled | Gross |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| Asha â main approved case | 144 h | 16 h | 8 h | 168/168 h | CAD 4,800 |
-| Dev â denied request, all scheduled time worked | 168 h | 0 h | 0 h | 168/168 h | CAD 5,040 |
-| Ira â fully paid approved comparison | 144 h | 24 h | 0 h | 168/168 h | CAD 5,040 |
+| Asha — main approved case | 144 h | 16 h | 8 h | 168/168 h | CAD 4,800 |
+| Dev — denied request, all scheduled time worked | 168 h | 0 h | 0 h | 168/168 h | CAD 5,040 |
+| Ira — fully paid approved comparison | 144 h | 24 h | 0 h | 168/168 h | CAD 5,040 |
 
 The shared schedule fits these synthetic employees only. Real reporting would need each employee's effective schedule, applicable calendar, completed processing results, and authorized payroll rules.
 
-### Report 3 â Outstanding approval ownership
+### Report 3 — Outstanding approval ownership
 
 **Business question:** Which submitted requests have an assigned approver, and which need route repair?
 
@@ -699,7 +691,7 @@ ORDER BY request_id;
 
 This separates waiting for a decision from waiting for ownership to be repaired.
 
-### Report 4 â Cross-month allocation
+### Report 4 — Cross-month allocation
 
 **Business question:** Which month contains each calculated absence day?
 
@@ -723,7 +715,7 @@ ORDER BY absence_month;
 
 The grouping uses the absence date; a real payroll-period report might use different calendars or pay-period identifiers.
 
-### Report 5 â Delegation candidates for the review date
+### Report 5 — Delegation candidates for the review date
 
 **Business question:** Which sample delegation passes the transaction/date/acceptance filters on 12 November?
 
@@ -745,41 +737,6 @@ ORDER BY delegation_id;
 
 The matching record represents Daniel's delegation to Elena. The expired and rejected examples are excluded. This is a candidate filter, not a security implementation: real identity, eligibility, relationship, revocation, and decision-time authority still require validation.
 
-## Proposed user acceptance testing
-
-These scenarios describe how stakeholders could validate the requirements in an authorized PeopleSoft environment. **PeopleSoft execution status: Not Run.** An expected result in this table is not a claim that the feature has passed UAT.
-
-| ID | Scenario/action | Expected result | Stories |
-| --- | --- | --- | --- |
-| U01 | Eligible employee selects 16â18 November on the main schedule | 24 working hours | US01, US03 |
-| U02 | Employee opens another person's request directly | Access denied without protected data disclosure | US02, US18 |
-| U03 | End date is before start date | Clear error; no valid submission | US03 |
-| U04 | Required request detail is missing | Correction explained before submission | US03 |
-| U05 | Forecast 24 hours with 16 available | Expected 16 paid/8 unpaid, identified as an estimate | US04 |
-| U06 | Employee declines the unpaid component | Revise/withdraw path; no submission relying on that split | US04 |
-| U07 | Repeat the submission action | One business submission and identifier | US05 |
-| U08 | Accepted delegation covers transaction and decision date | Authorized delegate can review within scope | US06 |
-| U09 | Delegation is expired, rejected, revoked, or unrelated | No unauthorized decision; validated alternative or exception | US06âUS07 |
-| U10 | No eligible approver; administrator repairs route | Exception and authorized reassignment recorded; no auto-approval | US05, US07 |
-| U11 | Valid reviewer approves an unchanged acceptable request | Decision communicated; eligible for later processing | US08, US11 |
-| U12 | Deny with a reason; employee works all scheduled time | No approved allocation; example gross CAD 5,040 | US09 |
-| U13 | Supported first-step Push Back with comment | Needs Rework and clear employee action; no approved allocation | US10âUS11 |
-| U14 | Correct and resubmit a returned request | Validation, forecast, and route repeated; history preserved | US10 |
-| U15 | Permitted cancellation before processing | Cancelled event excluded from later allocation | US12 |
-| U16 | Correction requested after processing/finalization | Controlled authorized correction and reconciliation | US12 |
-| U17 | Opening 8 h plus eligible November credit 8 h | 16 h available; no duplicate credit | US13 |
-| U18 | Process Asha's approved event | 16 paid/8 unpaid; closing balance zero | US14 |
-| U19 | Reconcile main November hours at CAD 30 | 160 payable h; CAD 4,800 gross | US15 |
-| U20 | Another approved event reduces the balance after acknowledgement | Changed split shown; renewed agreement before approval relies on it | US04, US08 |
-| U21 | Date range includes off-days or supported partial days | Duration follows actual schedule and configured units | US03 |
-| U22 | Delegation expires while a request is awaiting decision | Decision-time authority fails; validated reroute/exception | US06âUS07 |
-| U23 | Replay decision or restart processing | No duplicate entitlement consumption or paid units | US08, US14 |
-| U24 | Allocate 30 Novemberâ2 December with the dated credit | Daily 0/8, 8/0, 0/8 paid/unpaid h | US13âUS14 |
-| U25 | Report mixed statuses and attempt an unauthorized export | Correct populations and enforced report/data access | US16, US18 |
-| U26 | Later-stage reviewer uses supported Push Back | Configured previous-reviewer route, not assumed direct employee return | US10, US17 |
-
-I would also include keyboard/accessibility review, audit-history checks, and a message walkthrough for NFR02âNFR05. A real execution record would capture environment/release, test data, actual result, evidence, executor, date, and any defect and retest reference.
-
 ### What was checked in this exercise
 
 The embedded SQL was executed against an in-memory SQLite database. Checks covered the twenty-one-weekday November schedule, the 16/8 main allocation, the CAD 4,800 gross result, the denied and fully paid comparison results, cross-month grouping, outstanding approval ownership, and the accepted delegation candidate. The calculation tables were also checked against the dated-credit assumptions.
@@ -788,82 +745,7 @@ The sample database key prevents duplicate allocation rows for the same request/
 
 ## Business analysis techniques and academic connections
 
-This PeopleSoft case applies requirements analysis, systems modelling, database reasoning, and technical writing associated with the Honours Bachelor of Technology â Software Development programme at Seneca. The academic connections support the analysis of the absence process.
-
-The connections below use related subjects in Seneca's published BSD curriculum. They identify transferable skills; they do not suggest that those courses taught PeopleSoft or replace an academic transcript. Course codes and outlines can differ by academic year. [S01âS05]
-
-| Related course or area | Connection demonstrated in this case |
-| --- | --- |
-| BTS330 â Business Requirements Analysis Using OO Models [S03] | Problem definition, stakeholder questions, business rules, and written requirements |
-| BTS435 â systems analysis and design [S02] | User stories, acceptance criteria, process decisions, and backlog refinement |
-| BTD210 â Database Design Principles [S04] | Data entities, keys, relationships, SQL joins, and report definitions |
-| BTD315 â advanced database study [S02] | Aggregation, date-based reporting, and checking data integrity |
-| BTS535 â software project management [S02] | Scope, priorities, risks, dependencies, and a definition of completion |
-| BTC440 â Business and Technical Writing [S05] | A readable case narrative, clear requirements, and source attribution |
-| ENG106 â writing/research; BTC240 â organizational communication [S02] | Separating evidence from assumptions and adapting explanations to stakeholders |
-| BTH545 â user-centred interface design [S02] | Employee-facing validation, understandable status messages, and accessibility questions |
-| BTP405 â development/design methods [S02] | Testable behavior, quality checks, and separating analysis from implementation |
-| BAB100 â business foundations [S02] | Understanding how operations, HR, management, and payroll share a process |
-
-The case demonstrates requirements analysis, process modelling, user-story writing, acceptance-criteria design, SQL reporting, numerical reconciliation, documentation research, and communication. My PeopleSoft knowledge here is at an introductory functional level: terminology, request flow, forecasting, approval, delegation, security concepts, and the distinction between approval and processing.
-
-## Coverage of the thirteen learning topics
-
-Some topics explain the system context rather than appearing as employee actions. I kept that distinction so the process diagram follows a believable request journey.
-
-| Learning topic | Where it appears in this case | Oracle references |
-| --- | --- | --- |
-| 1. Learning resources | Research approach and reference list | O01 |
-| 2. PeopleSoft suites | HCM scope; FSCM/Campus context | O02 |
-| 3. Browser access and PeopleTools | Employee access and functional configuration dependencies | O03, O03A |
-| 4. Fluid homepages and tiles | Employee self-service and review navigation | O04, O07, O08A |
-| 5. Permissions and data scope | US02/US18, access matrix, and negative tests | O05, O05A |
-| 6. Absence terminology | Vacation name/reason, entitlement, take, and glossary | O06âO06C |
-| 7. Employee request process | US01âUS05 and Asha's submission | O07 |
-| 8. Manager review | Approve/Deny/Push Back branches and US08âUS11 | O08, O08A |
-| 9. Configuration and business rules | Assumptions, requirements, and fit-gap questions | O09 |
-| 10. Forecasting | Main estimate, changed balance, and dated-credit examples | O10 |
-| 11. Post-approval processing | Daily allocation, monthly reconciliation, and US13âUS15 | O11âO12 |
-| 12. Query and reporting | Reporting questions and independent SQL exercise | O14 |
-| 13. Delegation | Daniel/Elena, routing exceptions, and US06âUS07 | O13 |
-
-## Presenting the backlog in GitHub
-
-This README is the complete case-study document. The same user stories can also become individual GitHub Issues; that does not require additional repository files or an application. [G04]
-
-1. Create a repository, for example `peoplesoft-absence-ba-case-study`, and upload this file as `README.md` in its root. Upload `swimlane-diagram.png` alongside it so the image link renders. [G01âG02]
-2. In the repository, choose **Issues â New issue**. Use one issue per story, starting with `US01 â Request time for a family event`.
-3. Copy the matching story statement, acceptance criteria, and trace line into the issue body. Use checklist boxes for the criteria if helpful.
-4. Add labels such as `user-story`, `analysis`, and `must` or `should`. An optional `needs-validation` label identifies behavior that still needs an environment or policy decision.
-5. Repeat for US02âUS18. Link related story IDs or issue numbers so the sequence and dependencies remain visible.
-
-For example, US08 depends on the submission in US05, valid review authority in US06/US07, and the current split in US04. US14 depends on an eligible approval, and US15 depends on calculated allocations plus verified worked time.
-
-An issue body can use this structure:
-
-```markdown
-## User story
-
-As an employee, I want to request vacation for my sister's wedding
-so that I can arrange the time away and receive a clear decision.
-
-## Acceptance criteria
-
-- [ ] Given the eight-hour weekday schedule, selecting 16â18 November
-      produces twenty-four requested working hours.
-- [ ] Before proceeding, the employee can understand whether all
-      requested hours are expected to be paid.
-
-## Traceability
-
-US01 Â· FR01 Â· BR01âBR02 Â· U01 Â· Must
-
-## Evidence status
-
-Documented learning scenario; PeopleSoft implementation and UAT not performed.
-```
-
-For this documentation project, **analysis complete** means that the story has a clear user need, reviewable criteria, traced requirements/tests, and a consistent place in the process. It does not mean that its behavior has been built or passed in PeopleSoft. If using a board, stages such as *Draft*, *Ready for analysis review*, and *Analysis documented* make that boundary visible.
+This PeopleSoft case applies requirements analysis, systems modelling, database reasoning, and technical writing associated with the Honours Bachelor of Technology — Software Development programme at Seneca. The academic connections support the analysis of the absence process.
 
 ## What I learned and what I would explore next
 
@@ -905,16 +787,8 @@ The Oracle sources informed the product concepts and workflow interpretation. Th
 
 | ID | Source | Used for |
 | --- | --- | --- |
-| S01 | [Honours Bachelor of Technology â Software Development](https://www.senecapolytechnic.ca/programs/fulltime/BSD.html) | Programme context and transferable skills |
+| S01 | [Honours Bachelor of Technology — Software Development](https://www.senecapolytechnic.ca/programs/fulltime/BSD.html) | Programme context and transferable skills |
 | S02 | [BSD published course curriculum](https://www.senecapolytechnic.ca/programs/fulltime/BSD/courses.html) | Related analysis, design, database, project, and communication subjects |
 | S03 | [BTS330 course outline](https://www.senecapolytechnic.ca/cgi-bin/subject?s1=BTS330) | Requirements research, analysis, and documentation |
 | S04 | [BTD210 course outline](https://apps.senecapolytechnic.ca/ssos/findOutline.do?subjectCode=BTD210) | Relational design, schemas, and SQL |
 | S05 | [BTC440 course outline](https://www.senecapolytechnic.ca/cgi-bin/subject?s1=BTC440) | Business/technical writing and research attribution |
-
-### GitHub documentation
-
-| ID | Source | Used for |
-| --- | --- | --- |
-| G01 | [Creating a new repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository) | Repository setup |
-| G02 | [Adding a file to a repository](https://docs.github.com/en/repositories/working-with-files/managing-files/adding-a-file-to-a-repository) | Publishing the README |
-| G04 | [Creating an issue](https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/creating-an-issue) | One GitHub Issue per user story |
